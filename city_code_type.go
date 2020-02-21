@@ -14,11 +14,11 @@ type City struct {
 	CityCode string `json:"cityCode"` // 城市编码
 }
 
-func (t CityCodeList) APIName() string {
+func (t *CityCodeList) APIName() string {
 	return "/api/cityCode/list"
 }
 
-func (t CityCodeList) Params() map[string]string {
+func (t *CityCodeList) Params() map[string]string {
 	var m = make(map[string]string)
 	return m
 }

@@ -47,11 +47,11 @@ type AddOrderRsp struct {
 	} `json:"result"`
 }
 
-func (t AddOrder) APIName() string {
+func (t *AddOrder) APIName() string {
 	return "/api/order/addOrder"
 }
 
-func (t AddOrder) Params() map[string]string {
+func (t *AddOrder) Params() map[string]string {
 	var m = make(map[string]string)
 	return m
 }
@@ -88,11 +88,11 @@ type StatusQueryRsp struct {
 	} `json:"result"`
 }
 
-func (t StatusQuery) APIName() string {
+func (t *StatusQuery) APIName() string {
 	return "/api/order/status/query"
 }
 
-func (t StatusQuery) Params() map[string]string {
+func (t *StatusQuery) Params() map[string]string {
 	var m = make(map[string]string)
 	return m
 }
