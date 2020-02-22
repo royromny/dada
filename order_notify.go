@@ -11,11 +11,6 @@ import (
 	"strconv"
 )
 
-// 订单回调
-var (
-	kSuccess = []byte("success")
-)
-
 // 订单回调 https://newopen.imdada.cn/#/development/file/order?_k=md8v7x
 func (this *Client) GetOrderNotification(req *http.Request) (notity *OrderNotification, err error) {
 	if req == nil {
@@ -44,7 +39,7 @@ func (this *Client) AckNotification(w http.ResponseWriter) {
 
 func AckNotification(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusOK)
-	w.Write(kSuccess)
+	w.Write([]byte("success"))
 }
 
 func VerifySign(notity OrderNotification) (ok bool) {

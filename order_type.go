@@ -125,7 +125,6 @@ func (t *AddAfterQuery) Params() map[string]string {
 // --------------------------------------------------------------------------------
 // AddTip 增加小费 https://newopen.imdada.cn/#/development/file/addTip?_k=l9b2m4
 type AddTip struct {
-	DeliveryNo string  `json:"deliveryNo"` // 平台订单号
 	OrderId    string  `json:"order_id"`   // 是	第三方订单编号
 	Tips       float64 `json:"tips"`       // 是	小费金额(精确到小数点后一位，单位：元)
 	CityCode   string  `json:"city_code"`  // 是	订单城市区号
