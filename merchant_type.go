@@ -14,6 +14,7 @@ type MerchantAdd struct {
 
 type MerchantAddRsp struct {
 	BaseRep
+	Result int `json:"result"` // 商户编号
 }
 
 func (t *MerchantAdd) APIName() string {

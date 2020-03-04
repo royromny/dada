@@ -2,9 +2,7 @@ package dada
 
 // --------------------------------------------------------------------------------
 // ShopAdd 新增门店 https://newopen.imdada.cn/#/development/file/shopAdd?_k=lewbit
-type ShopAdd struct {
-	_ []Shop
-}
+type ShopAdd []*Shop
 
 type Shop struct {
 	StationName    string  `json:"station_name"`    //  是	门店名称
@@ -22,12 +20,31 @@ type Shop struct {
 	Password       string  `json:"password"`        // 	否	达达商家app密码(若不需要登陆app,则不用设置)
 }
 
+type ShopRsp struct {
+	StationName    string  `json:"stationName"`    //  是	门店名称
+	Business       int     `json:"business"`       // 	是	业务类型(食品小吃-1,饮料-2,鲜花-3,文印票务-8,便利店-9,水果生鲜-13,同城电商-19, 医药-20,蛋糕-21,酒品-24,小商品市场-25,服装-26,汽修零配-27,数码-28,小龙虾-29, 其他-5)
+	CityName       string  `json:"cityName"`       // 	是	城市名称(如,上海)
+	AreaName       string  `json:"areaName"`       // 	是	区域名称(如,浦东新区)
+	StationAddress string  `json:"stationAddress"` // 	是	门店地址
+	Lng            float64 `json:"lng"`            // 	是	门店经度
+	Lat            float64 `json:"lat"`            // 	是	门店纬度
+	ContactName    string  `json:"contactName"`    // 	是	联系人姓名
+	Phone          string  `json:"phone"`          // 	是	联系人电话
+	OriginShopId   string  `json:"originShopId"`   // 	否	门店编码,可自定义,但必须唯一;若不填写,则系统自动生成
+}
+
+type Failed struct {
+	ShopNo   string `json:"shopNo"`
+	Msg      string `json:"msg"`
+	ShopName string `json:"ShopName"`
+}
+
 type ShopAddRsp struct {
 	BaseRep
 	Result struct {
-		Success     int    `json:"success"`      //	成功导入门店的数量
-		SuccessList []Shop `json:"success_list"` //	成功导入的门店
-		FailedList  []Shop `json:"failed_list"`  //	导入失败门店编号以及原因
+		Success     int       `json:"success"`     //	成功导入门店的数量
+		SuccessList []ShopRsp `json:"successList"` //	成功导入的门店
+		FailedList  []Failed  `json:"failedList"`  //	导入失败门店编号以及原因
 	} `json:"result"`
 }
 
