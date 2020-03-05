@@ -111,7 +111,7 @@ type ShopDetailRsp struct {
 }
 
 func (t *ShopDetail) APIName() string {
-	return "/api/shop/update"
+	return "/api/shop/detail"
 }
 
 func (t *ShopDetail) Params() map[string]string {

@@ -2,7 +2,7 @@ package dada
 
 // --------------------------------------------------------------------------------
 // 新增订单 https://newopen.imdada.cn/#/development/file/add?_k=21pavh
-type AddOrder struct {
+type Order struct {
 	// 必填
 	ShopNo          string  `json:"shop_no"`          // 门店编号，门店创建后可在门店列表和单页查看
 	OriginId        string  `json:"origin_id"`        // 第三方订单ID
@@ -47,11 +47,11 @@ type AddOrderRsp struct {
 	} `json:"result"`
 }
 
-func (t *AddOrder) APIName() string {
+func (t *Order) APIName() string {
 	return "/api/order/addOrder"
 }
 
-func (t *AddOrder) Params() map[string]string {
+func (t *Order) Params() map[string]string {
 	var m = make(map[string]string)
 	return m
 }
@@ -59,7 +59,7 @@ func (t *AddOrder) Params() map[string]string {
 // --------------------------------------------------------------------------------
 // ReAddOrder 重新发布订单 https://newopen.imdada.cn/#/development/file/reAdd?_k=2jkzyb
 type ReAddOrder struct {
-	AddOrder
+	Order
 }
 
 type ReAddOrderRsp struct {
@@ -78,13 +78,13 @@ func (t *ReAddOrder) Params() map[string]string {
 // --------------------------------------------------------------------------------
 // QueryDeliverFee 重新发布订单 https://newopen.imdada.cn/#/development/file/readyAdd?_k=0hxqh8
 type QueryDeliverFee struct {
-	AddOrder
+	Order
 }
 
 type QueryDeliverFeeRsp struct {
 	BaseRep
 	Result struct {
-		Distance     float64 `json:"distance"`
+		Distance     float64 `json:"distance"` // 是	配送距离(单位：米)
 		DeliveryNo   string  `json:"deliveryNo"` // 平台订单号
 		Fee          float64 `json:"fee"`
 		DeliverFee   float64 `json:"deliverFee"`

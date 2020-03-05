@@ -1,7 +1,7 @@
 package dada
 
 // AddOrder 新增配送单接口 https://newopen.imdada.cn/#/development/file/add?_k=21pavh
-func (this *Client) AddOrder(param AddOrder, sourceId string) (result *AddOrderRsp, err error) {
+func (this *Client) AddOrder(param Order, sourceId string) (result *AddOrderRsp, err error) {
 	err = this.doRequest("POST", &param, sourceId, &result)
 	return result, err
 }
