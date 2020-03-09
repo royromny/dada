@@ -3,7 +3,7 @@ package dada
 // --------------------------------------------------------------------------------
 // BalanceQuery 查询账户余额 https://newopen.imdada.cn/#/development/file/balanceQuery?_k=5uinae
 type BalanceQuery struct {
-	Category int `json:"category"` //	否	查询运费账户类型（1：运费账户；2：红包账户，3：所有），默认查询运费账户余额
+	Category uint8 `json:"category"` //	否	查询运费账户类型（1：运费账户；2：红包账户，3：所有），默认查询运费账户余额
 }
 
 type BalanceQueryRsp struct {
@@ -15,7 +15,7 @@ type BalanceQueryRsp struct {
 }
 
 func (t *BalanceQuery) APIName() string {
-	return "/api/recharge"
+	return "/api/balance/query"
 }
 
 func (t *BalanceQuery) Params() map[string]string {
