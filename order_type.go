@@ -84,7 +84,7 @@ type QueryDeliverFee struct {
 type QueryDeliverFeeRsp struct {
 	BaseRep
 	Result struct {
-		Distance     float64 `json:"distance"` // 是	配送距离(单位：米)
+		Distance     float64 `json:"distance"`   // 是	配送距离(单位：米)
 		DeliveryNo   string  `json:"deliveryNo"` // 平台订单号
 		Fee          float64 `json:"fee"`
 		DeliverFee   float64 `json:"deliverFee"`
@@ -125,10 +125,10 @@ func (t *AddAfterQuery) Params() map[string]string {
 // --------------------------------------------------------------------------------
 // AddTip 增加小费 https://newopen.imdada.cn/#/development/file/addTip?_k=l9b2m4
 type AddTip struct {
-	OrderId    string  `json:"order_id"`   // 是	第三方订单编号
-	Tips       float64 `json:"tips"`       // 是	小费金额(精确到小数点后一位，单位：元)
-	CityCode   string  `json:"city_code"`  // 是	订单城市区号
-	Info       string  `json:"info"`       // 否	备注(字段最大长度：512)
+	OrderId  string  `json:"order_id"`  // 是	第三方订单编号
+	Tips     float64 `json:"tips"`      // 是	小费金额(精确到小数点后一位，单位：元)
+	CityCode string  `json:"city_code"` // 是	订单城市区号
+	Info     string  `json:"info"`      // 否	备注(字段最大长度：512)
 }
 
 type AddTipRsp struct {
@@ -189,14 +189,14 @@ func (t *StatusQuery) Params() map[string]string {
 // FormalCancel 取消订单(线上环境) https://newopen.imdada.cn/#/development/file/formalCancel?_k=pxanlf
 type FormalCancel struct {
 	OrderId        string `json:"order_id"`         // 是	第三方订单编号
-	CancelReasonid int    `json:"cancel_reason_id"` // 是	取消原因ID（取消原因列表）
+	CancelReasonid uint   `json:"cancel_reason_id"` // 是	取消原因ID（取消原因列表）
 	CancelReason   string `json:"cancel_reason"`    // 否	取消原因(当取消原因ID为其他时，此字段必填)
 }
 
 type FormalCancelRsp struct {
 	BaseRep
 	Result struct {
-		deductfee float64 `json:"deduct_fee"` // 扣除的违约金(单位：元)
+		DeductFee float64 `json:"deduct_fee"` // 扣除的违约金(单位：元)
 	} `json:"result"`
 }
 
@@ -301,7 +301,7 @@ func (t *AppointListTransporter) Params() map[string]string {
 // --------------------------------------------------------------------------------
 // ConfirmGoods 妥投异常之物品返回完成 https://newopen.imdada.cn/#/development/file/abnormalConfirm?_k=fxapv2
 type ConfirmGoods struct {
-	OrderId  string `json:"order_id"`  // 是 第三方订单编号
+	OrderId string `json:"order_id"` // 是 第三方订单编号
 }
 
 type ConfirmGoodsRsp struct {
