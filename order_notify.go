@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"sort"
+	"strconv"
 )
 
 // 订单回调 https://newopen.imdada.cn/#/development/file/order?_k=md8v7x
@@ -23,7 +24,22 @@ func (this *Client) GetOrderNotification(req *http.Request) (notity *OrderNotifi
 	fmt.Printf("body, %v\n", string(body))
 	if err = json.Unmarshal(body, notity); err != nil {
 		fmt.Printf("Unmarshal err, %v\n", err)
-		return nil, err
+		// 对付变态的updateTime不同类型问题
+		notity2 := &OrderNotification2{}
+		if err2 := json.Unmarshal(body, notity2); err2 != nil {
+			fmt.Printf("Unmarshal err2, %v\n", err2)
+			return nil, err
+		}
+		notity.ClientId = notity2.ClientId
+		notity.OrderId = notity2.OrderId
+		notity.OrderStatus = notity2.OrderStatus
+		notity.CancelReason = notity2.CancelReason
+		notity.CancelFrom = notity2.CancelFrom
+		notity.Signature = notity2.Signature
+		notity.DmId = notity2.DmId
+		notity.DmName = notity2.DmName
+		notity.DmMobile = notity2.DmMobile
+		notity.UpdateTime = strconv.Itoa(notity2.UpdateTime)
 	}
 	ok := VerifySign(*notity)
 	if ok == false {
