@@ -10,6 +10,6 @@ type MessageNotify struct {
 // 骑士取消订单 https://newopen.imdada.cn/#/development/file/transporterCancelOrder?_k=if07yb
 type KnightCancel struct {
 	OrderId      string `json:"orderId"`      //	是	商家第三方订单号
-	DadaOrderId  int64  `json:"dadaOrderId"` //	否	达达订单号
+	DadaOrderId  int64  `json:"dadaOrderId"`  //	否	达达订单号
 	CancelReason string `json:"cancelReason"` //	是	骑士取消原因
 }

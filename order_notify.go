@@ -22,13 +22,13 @@ func (this *Client) GetOrderNotification(req *http.Request) (notity *OrderNotifi
 	notity = &OrderNotification{}
 	body, err := ioutil.ReadAll(req.Body)
 	fmt.Printf("body, %v\n", string(body))
-	if err = json.Unmarshal(body, notity); err != nil {
-		fmt.Printf("Unmarshal err, %v\n", err)
+	if errNotity := json.Unmarshal(body, notity); errNotity != nil {
+		fmt.Printf("Unmarshal errNotity, %v\n", errNotity)
 		// 对付变态的updateTime不同类型问题
 		notity2 := &OrderNotification2{}
-		if err2 := json.Unmarshal(body, notity2); err2 != nil {
-			fmt.Printf("Unmarshal err2, %v\n", err2)
-			return nil, err
+		if errNotity2 := json.Unmarshal(body, notity2); errNotity2 != nil {
+			fmt.Printf("Unmarshal errNotity2, %v\n", errNotity2)
+			return nil, errNotity2
 		}
 		notity.ClientId = notity2.ClientId
 		notity.OrderId = notity2.OrderId
